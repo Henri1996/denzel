@@ -57,7 +57,7 @@ app.listen(9292, () => {
 
 });
 
-app.get("/movie", (request, response) => {
+app.get("/movie/populate", (request, response) => {
     collection.find({}).toArray((error, result) => {
         if(error) {
             return response.status(500).send(error);
@@ -66,6 +66,15 @@ app.get("/movie", (request, response) => {
     });
 });
 
+
+app.get("/movie", (request, response) => {
+    collection.findOne({}).toArray((error, result) => {
+        if(error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    });
+});   
 
 app.get("/movie/search", (request, response) => {
     var req=request.query;
@@ -114,6 +123,7 @@ app.post("/movies/:id", (request, response) => {
 app.use('/graphql', graphqlHTTP({
     schema: schema,
     graphiql: true,
+
 }));
 
 }

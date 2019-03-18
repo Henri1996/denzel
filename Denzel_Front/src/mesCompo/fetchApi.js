@@ -14,7 +14,8 @@ class fetchApi extends Component {
         }
       }
   componentDidMount(){
-    fetch('http://localhost:9292/Movie')
+
+    fetch('http://localhost:9292/movie/populate')
     .then(res => res.json())
     .then(json =>{
         this.setState({
@@ -35,10 +36,11 @@ class fetchApi extends Component {
     else{
     return (
       <div>
+        
         <ul>
           {item.map(it=>(<li>
             Title : {it.title}
-          </li>))}
+          </li>))}    
         </ul>
         </div>
     );

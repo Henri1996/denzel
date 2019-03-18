@@ -1,5 +1,5 @@
-const { GraphQLObjectType,
-    GraphQLString
+const { GraphQLObjectType,GraphQLString,
+    GraphQLList
 } = require('graphql');
 
 
@@ -13,8 +13,13 @@ const queryType = new GraphQLObjectType({
             resolve: function () {
                 return "Hello World";
             }
+        },
+        movies : {
+            type : GraphQLList,
+            resolve: function(){
+                return 
+            }
         }
-        
     }
 });
 

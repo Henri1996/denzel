@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
+import GetMovies from './mesCompo/fetchApi';
+import GetOneMovie from './mesCompo/OneMovie';
+import { Button } from 'reactstrap';
 
 class App extends Component {
   constructor(props){
@@ -11,38 +13,20 @@ class App extends Component {
       isLoaded: false,
     }
   }
-  componentDidMount(){
-      fetch('http://localhost:9292/Movie')
-      .then(res => res.json())
-      .then(json =>{
-          this.setState({
-            isLoaded : true,
-            item : json,
-          })
-      }
-        
-      )
-
-  }
+ 
 
   render() {
-    var { isLoaded , item} = this.state
-
-    if(!isLoaded){
-      return <div>Loading....</div>
-    }
-    else{
+    
     return (
-      <div >
-        <ul>
-          {item.map(it=>(<li>
-            Title : {it.title}
-          </li>))}
-        </ul>
-      </div>
-    );
+      
+    <div>
+      <h1 className="text-center title">Here we are 10 ramdom movies from the Denzel's best movies :</h1>
+      
+      <br></br><br></br>
+      <GetOneMovie/>
+    </div>)
   }
 }
-}
+
 
 export default App;
