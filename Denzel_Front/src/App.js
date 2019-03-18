@@ -20,7 +20,7 @@ class App extends Component {
     return (
       
     <div>
-      <h1 className="text-center title">Here we are 10 ramdom movies from the Denzel's best movies :</h1>
+      <h1 className="text-center title">10 ramdom movies from the Denzel's best movies :</h1>
       
       <br></br><br></br>
       <GetOneMovie/>
