@@ -1,5 +1,11 @@
 # DENZEL
 
+## En ligne :
+J'ai créé un autre répositorie pour le mettre sur netlify.
+
+Voici l'adress : https://client-denzel-movies.netlify.com
+
+## Ici voici le le back et client en local  :
 Le fichier Denzel_back contient :
 - La connection avec la base de donnée mongoDB
 - L'ajout de tous les films dans la base de données
