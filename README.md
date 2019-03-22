@@ -3,7 +3,7 @@
 ## En ligne :
 J'ai créé un autre répositorie pour le mettre sur netlify.
 
-Voici l'adress : https://client-denzel-movies.netlify.com
+Voici l'adress : https://client-denzel-movies.netlify.com (Il est possible que les api mettre quelques minutes à marcher)
 
 ## Ici voici le le back et client en local  :
 Le fichier Denzel_back contient :
