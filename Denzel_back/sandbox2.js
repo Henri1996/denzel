@@ -57,7 +57,7 @@ app.listen(9292, () => {
 
 });
 
-app.get("/movie/populate", (request, response) => {
+app.get("/movies/populate", (request, response) => {
     collection.find({}).toArray((error, result) => {
         if(error) {
             return response.status(500).send(error);
@@ -68,15 +68,15 @@ app.get("/movie/populate", (request, response) => {
 
 
 app.get("/movie", (request, response) => {
-    collection.findOne({}).toArray((error, result) => {
+    collection.findOne({"metascore" : {"$gt" : 70}}, (error, result) => {
         if(error) {
             return response.status(500).send(error);
         }
         response.send(result);
     });
-});   
+  });
 
-app.get("/movie/search", (request, response) => {
+app.get("/movies/search", (request, response) => {
     var req=request.query;
     var metascore;
     if(req.metascore == null)
@@ -109,7 +109,7 @@ app.get("/movie/:id", (request, response) => {
     });
 });
 
-app.post("/movies/:id", (request, response) => {
+app.post("/movie/:id", (request, response) => {
     req=request.body;
     collection.updateOne({id:request.params.id},{$set:{date:req.date,review:req.review}},(error, result) => {           
         if(error) {

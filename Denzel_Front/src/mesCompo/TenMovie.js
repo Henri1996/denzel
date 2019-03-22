@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Card, CardImg, CardText, CardBody,
     CardTitle, CardSubtitle, Button , CardDeck} from 'reactstrap';
+import App from '../App';
 
 function getRandomNumber(max)
 {
@@ -15,12 +16,13 @@ class OneMovie extends Component {
         this.state = {
           item : [],
           isLoaded: false,
+          rtrn: false,
           randomN:[],
         }
       }
   componentDidMount(){
 
-    fetch('http://localhost:9292/movie/populate')
+    fetch('http://localhost:9292/movies/populate')
     .then(res => res.json())
     .then(json =>{
         this.setState({
@@ -33,8 +35,14 @@ class OneMovie extends Component {
     )
 
 }
+ReturnF()
+{
+  this.setState(
+    {rtrn : true}
+  )
+}
   render() {
-    var { isLoaded , item} = this.state
+    var { isLoaded , item,rtrn} = this.state
 
     if(!isLoaded){
       return <div>Loading....</div>
@@ -50,13 +58,16 @@ class OneMovie extends Component {
         var r8 = getRandomNumber(56);
         
 
-
+    if(!rtrn)
+    {
     return (
       <div>
         
-        
+        <Button  color = "primary" size="lg" onClick={()=>this.ReturnF()}>
+        Return
+      </Button>{' '}
           
-          <CardDeck>
+      <CardDeck>
       <Card>
         <CardImg top width="100%" src={item[r].poster} alt="Card image cap" />
         <CardBody>
@@ -73,7 +84,7 @@ class OneMovie extends Component {
           <CardSubtitle>Rate :{item[r2].rating}</CardSubtitle>
 
           <CardText>{item[r2].synopsis}</CardText>
-          <Button>Button</Button>
+          <Button href={item[r2].link}>View site</Button>
         </CardBody>
       </Card>
       <Card>
@@ -83,7 +94,7 @@ class OneMovie extends Component {
         <CardSubtitle>Rate : {item[r3].rating}</CardSubtitle>
 
           <CardText>{item[r3].synopsis}</CardText>
-          <Button>Button</Button>
+          <Button href={item[r3].link}>View site</Button>
         </CardBody>
       </Card>
       <Card>
@@ -92,10 +103,10 @@ class OneMovie extends Component {
         <CardTitle>{item[r4].title}</CardTitle>
         <CardSubtitle>Rate : {item[r4].rating}</CardSubtitle>
           <CardText>{item[r4].synopsis}</CardText>
-          <Button>Button</Button>
-        </CardBody>
+          <Button href={item[r4].link}>View site</Button>        </CardBody>
       </Card>
     </CardDeck>
+    <br/>
     <CardDeck>
       <Card>
         <CardImg top width="100%" src={item[r5].poster} alt="Card image cap" />
@@ -104,8 +115,7 @@ class OneMovie extends Component {
         <CardSubtitle>Rate : {item[r5].rating}</CardSubtitle>
 
           <CardText>{item[r5].synopsis}</CardText>
-          <Button>Button</Button>
-        </CardBody>
+          <Button href={item[r5].link}>View site</Button>        </CardBody>
       </Card>
       <Card>
         <CardImg top width="100%" src= {item[r6].poster} alt="Card image cap" />
@@ -114,8 +124,7 @@ class OneMovie extends Component {
         <CardSubtitle>Rate : {item[r6].rating}</CardSubtitle>
 
           <CardText>{item[r6].synopsis}</CardText>
-          <Button>Button</Button>
-        </CardBody>
+          <Button href={item[r6].link}>View site</Button>        </CardBody>
       </Card>
       <Card>
         <CardImg top width="100%" src={item[r7].poster} alt="Card image cap" />
@@ -124,7 +133,7 @@ class OneMovie extends Component {
 
         <CardSubtitle>Rate : {item[r7].rating}</CardSubtitle>
           <CardText>{item[r7].synopsis}</CardText>
-          <Button href={item[r7].link}>Web site</Button>
+          <Button href={item[r7].link}>View site</Button>
           
         </CardBody>
       </Card>
@@ -135,14 +144,16 @@ class OneMovie extends Component {
         <CardSubtitle>Rate : {item[r8].rating}</CardSubtitle>
           <CardText>{item[r8].synopsis}</CardText>
           
-          <Button>Button</Button>
-        </CardBody>
+          <Button href={item[r8].link}>View site</Button>        </CardBody>
       </Card>
       
     </CardDeck>
         </div>
     );
   }
+  else{
+    return (<App/>)
   }
-}
+  }
+}}
 export default OneMovie;
